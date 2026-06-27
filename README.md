@@ -15,10 +15,12 @@ O ecossistema **AlgaSensors** é estruturado através de microserviços especial
 - **Linguagem**: Java 21
 - **Framework**: Spring Boot 3.4.0
 - **Gerenciador de Dependências**: Gradle
-- **Banco de Dados**: H2 (In-memory para desenvolvimento rápido)
+- **Mensageria**: RabbitMQ (Comunicação assíncrona entre microserviços)
+- **Banco de Dados**: H2 (In-memory para desenvolvimento rápido) e Postgres (para suporte ao SonarQube)
 - **Identificadores**: TSID (Time-Sorted Unique Identifiers) - mais performáticos que UUIDs para índices de banco de dados.
 - **Diferenciais**:
   - Uso de **Hypersistence TSID** para IDs ordenáveis no tempo.
+  - Mensageria assíncrona para processamento de telemetria.
   - Princípios de **Clean Code** e separação de responsabilidades.
   - Configuração de **SonarQube** para análise de qualidade contínua.
 
@@ -26,11 +28,17 @@ O ecossistema **AlgaSensors** é estruturado através de microserviços especial
 
 ### 1. Infraestrutura (Docker)
 
-Suba os serviços de suporte (Banco de Dados Postgres e SonarQube):
+Suba os serviços de suporte (Banco de Dados Postgres, RabbitMQ e SonarQube):
 
 ```bash
 docker compose up -d
 ```
+
+| Serviço             | URL/Porta                                        | Credenciais (Admin)     |
+| :------------------ | :----------------------------------------------- | :---------------------- |
+| SonarQube           | [http://localhost:9000](http://localhost:9000)   | `admin` / `admin`       |
+| RabbitMQ Management | [http://localhost:15672](http://localhost:15672) | `rabbitmq` / `rabbitmq` |
+| RabbitMQ Broker     | `localhost:5672`                                 | `rabbitmq` / `rabbitmq` |
 
 ### 2. Rodando os Microserviços
 
