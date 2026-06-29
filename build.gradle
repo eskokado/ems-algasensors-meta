@@ -1,0 +1,4 @@
+// Aggregator for IDE import. Each microservice keeps its own build.gradle.
+subprojects {
+	// Shared configuration can be added here if needed.
+}

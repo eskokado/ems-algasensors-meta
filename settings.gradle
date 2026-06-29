@@ -1,0 +1,10 @@
+rootProject.name = 'algasensors'
+
+include 'device-management'
+project(':device-management').projectDir = file('microservices/device-management')
+
+include 'temperature-monitoring'
+project(':temperature-monitoring').projectDir = file('microservices/temperature-monitoring')
+
+include 'temperature-processing'
+project(':temperature-processing').projectDir = file('microservices/temperature-processing')
