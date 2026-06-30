@@ -23,7 +23,9 @@ services:
       - postgres_data:/var/lib/postgresql/data
   
   algasensors-rabbitmq:
-    image: rabbitmq:3-management
+    build:
+      context: ./configs/rabbitmq
+    hostname: rabbitmq
     ports:
       - "5672:5672"
       - "15672:15672"
